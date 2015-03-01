@@ -1,0 +1,66 @@
+#! /usr/bin/python2
+from suds.client import Client
+import xmltodict
+
+url_service = 'http://graphical.weather.gov/xml/DWMLgen/wsdl/ndfdXML.wsdl'
+client = Client(url_service)
+#print client.service.LatLonListZipCode('30009')
+bArray={ 
+"maxt":False, 
+"mint":False, 
+"temp":False,
+"dew":False,
+"appt":False,
+"pop12":False,
+"qpf":False,
+"snow":False,
+"sky":False,
+"rh":False,
+"wspd":False,
+"wdir":False,
+"wx":True,
+"icons":False,
+"waveh":False,
+"incw34":False,
+"incw50":False,
+"incw64":False,
+"cumw34":False,
+"cumw50":False,
+"cumw64":False,
+"wgust":False,
+"critfireo":False,
+"dryfireo":False,
+"conhazo":False,
+"ptornado":False,
+"phail":False,
+"ptstmwinds":False,
+"pxtornado":False,
+"pxhail":False,
+"pxtstmwinds":False,
+"ptotsvrtstm":False,
+"pxtotsvrtstm":False,
+"tmpabv14d":False,
+"tmpblw14d":False,
+"tmpabv30d":False,
+"tmpblw30d":False,
+"tmpabv90d":False,
+"tmpblw90d":False,
+"prcpabv14d":False,
+"prcpblw14d":False,
+"prcpabv30d":False,
+"prcpblw30d":False,
+"prcpabv90d":False,
+"prcpblw90d":False,
+"precipa_r":False,
+"sky_r":False,
+"td_r":False,
+"temp_r":False,
+"wdir_r":False,
+"wspd_r":False,
+"wwa":False,
+"iceaccum":False,
+"maxrh":False,
+"minrh":False}
+#'2015-02-29T12:00'
+response = client.service.NDFDgen(34.0689,-84.272,'time-series','','','', bArray)
+print type(xmltodict.parse(str(response)))
